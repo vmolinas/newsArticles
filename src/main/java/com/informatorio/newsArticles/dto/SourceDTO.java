@@ -3,6 +3,8 @@ package com.informatorio.newsArticles.dto;
 import com.informatorio.newsArticles.domain.Article;
 import com.informatorio.newsArticles.domain.Source;
 
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
@@ -11,9 +13,13 @@ import java.util.Set;
 public class SourceDTO extends Source {
 
     private Long id;
+    @NotBlank
     private String name;
+    @NotBlank
     private String code;
+    @NotBlank @FutureOrPresent
     private LocalDate createAt;
+    @NotBlank
     private Set<Article> articles = new HashSet<>();
 
     public SourceDTO() {

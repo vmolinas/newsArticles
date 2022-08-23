@@ -3,25 +3,31 @@ package com.informatorio.newsArticles.dto;
 import com.informatorio.newsArticles.domain.Author;
 import com.informatorio.newsArticles.domain.Source;
 
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 public class ArticleDTO {
 
     private Long id;
+    @NotBlank
     private String title;
+    @NotBlank
     private String description;
+    @NotBlank
     private String url;
+    @NotBlank
     private String urlToImage;
+    @NotBlank @FutureOrPresent
     private LocalDate publishedAt;
+    @NotBlank
     private Boolean published;
+    @NotBlank
     private String content;
+    @NotBlank
     private Author author;
+    @NotBlank
     private Source source;
 
     public ArticleDTO() {

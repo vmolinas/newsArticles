@@ -3,6 +3,8 @@ package com.informatorio.newsArticles.dto;
 import com.informatorio.newsArticles.domain.Article;
 import com.informatorio.newsArticles.domain.Author;
 
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
@@ -11,10 +13,14 @@ import java.util.Set;
 public class AuthorDTO extends Author {
 
     private Long id;
+    @NotBlank
     private String firstName;
+    @NotBlank
     private String lastName;
     private String fullName;
+    @NotBlank @FutureOrPresent
     private LocalDate createAt;
+    @NotBlank
     private Set<Article> articles = new HashSet<>();
 
     public AuthorDTO() {
