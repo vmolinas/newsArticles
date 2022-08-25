@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Validated
 @RestController
@@ -92,5 +94,23 @@ public class AuthorController {
                 authorPage.getTotalElements(),
                 authorPage.getTotalPages());
         return new ResponseEntity<>(authorPage, HttpStatus.OK);
+    }
+
+    /* LISTAR_POR_FULL_NAME */
+//    @GetMapping("/author/all/fullname")
+//    public ResponseEntity<?> findByFullName(@RequestParam @Size(min = 3, max = 20) String q) {
+//        List<Author> authors = authorRepository.findByFullName(q);
+//        if (authors.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        } else {
+//            List<AuthorDTO> authorsDTO = authors.stream().map(author -> authorConverter.toDto(author))
+//                    .collect(Collectors.toList());
+//            return new ResponseEntity<>(authorsDTO, HttpStatus.OK);
+//        }
+//    }
+
+    @GetMapping("/author/{fullname}")
+    public List<Author> buscarPorPalabra(@PathVariable String fullname) {
+        return authorRepository.findByFullName(fullname);
     }
 }

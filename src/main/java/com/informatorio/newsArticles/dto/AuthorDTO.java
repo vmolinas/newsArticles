@@ -49,6 +49,7 @@ public class AuthorDTO extends Author {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+        this.fullName = firstName + " " + lastName;
     }
 
     public String getLastName() {
@@ -57,6 +58,7 @@ public class AuthorDTO extends Author {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+        this.fullName = firstName + " " + lastName;
     }
 
     public String getFullName() {
