@@ -1,6 +1,9 @@
 package com.informatorio.newsArticles.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
@@ -8,26 +11,31 @@ import java.util.Set;
 
 @Entity
 public class Author {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    @NotBlank
     private String firstName;
+    @NotNull
+    @NotBlank
     private String lastName;
     private String fullName;
-    private LocalDate createAt;
-
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    @FutureOrPresent
+    private LocalDate createdAt;
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private Set<Article> articles = new HashSet<>();
 
     public Author() {
     }
 
-    public Author(String firstName, String lastName, String fullName, LocalDate createAt, Set<Article> articles) {
+    public Author(Long id, String firstName, String lastName, String fullName, LocalDate createdAt, Set<Article> articles
+    ) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.fullName = fullName;
-        this.createAt = createAt;
+        this.createdAt = createdAt;
         this.articles = articles;
     }
 
@@ -61,24 +69,19 @@ public class Author {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public LocalDate getCreateAt() {
-        return createAt;
-    }
-
-    public void setCreateAt(LocalDate createAt) {
-        this.createAt = createAt;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Set<Article> getArticles() {
         return articles;
     }
-
-    public void setArticles(Set<Article> articles) {
-        this.articles = articles;
+    public void addArticle(Article article) {
+        articles.add(article);
     }
 
     @Override
@@ -86,22 +89,22 @@ public class Author {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Author author = (Author) o;
-        return Objects.equals(id, author.id) && Objects.equals(firstName, author.firstName) && Objects.equals(lastName, author.lastName) && Objects.equals(fullName, author.fullName) && Objects.equals(createAt, author.createAt) && Objects.equals(articles, author.articles);
+        return Objects.equals(id, author.id) && Objects.equals(firstName, author.firstName) && Objects.equals(lastName, author.lastName) && Objects.equals(fullName, author.fullName) && Objects.equals(createdAt, author.createdAt) && Objects.equals(articles, author.articles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, fullName, createAt, articles);
+        return Objects.hash(id, firstName, lastName, fullName, createdAt, articles);
     }
 
     @Override
     public String toString() {
         return "Author{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
+                ", id='" + id + '\'' +
+                ", name='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", fullName='" + fullName + '\'' +
-                ", createAt=" + createAt +
+                ", createdAt=" + createdAt +
                 ", articles=" + articles +
                 '}';
     }

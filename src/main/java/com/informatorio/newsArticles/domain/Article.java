@@ -1,21 +1,29 @@
 package com.informatorio.newsArticles.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
 public class Article {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    @NotBlank
     private String title;
+    @NotNull
+    @NotBlank
     private String description;
     private String url;
     private String urlToImage;
+    @FutureOrPresent
     private LocalDate publishedAt;
-    private Boolean published;
+    @NotNull
+    @NotBlank
     private String content;
     @ManyToOne(fetch = FetchType.LAZY)
     private Author author;
@@ -25,13 +33,13 @@ public class Article {
     public Article() {
     }
 
-    public Article(String title, String description, String url, String urlToImage, LocalDate publishedAt, Boolean published, String content, Author author, Source source) {
+    public Article(Long id, String title, String description, String url, String urlToImage, LocalDate publishedAt, String content, Author author, Source source) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.url = url;
         this.urlToImage = urlToImage;
         this.publishedAt = publishedAt;
-        this.published = published;
         this.content = content;
         this.author = author;
         this.source = source;
@@ -85,14 +93,6 @@ public class Article {
         this.publishedAt = publishedAt;
     }
 
-    public Boolean getPublished() {
-        return published;
-    }
-
-    public void setPublished(Boolean published) {
-        this.published = published;
-    }
-
     public String getContent() {
         return content;
     }
@@ -122,12 +122,12 @@ public class Article {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Article article = (Article) o;
-        return Objects.equals(id, article.id) && Objects.equals(title, article.title) && Objects.equals(description, article.description) && Objects.equals(url, article.url) && Objects.equals(urlToImage, article.urlToImage) && Objects.equals(publishedAt, article.publishedAt) && Objects.equals(published, article.published) && Objects.equals(content, article.content) && Objects.equals(author, article.author) && Objects.equals(source, article.source);
+        return Objects.equals(id, article.id) && Objects.equals(title, article.title) && Objects.equals(description, article.description) && Objects.equals(url, article.url) && Objects.equals(urlToImage, article.urlToImage) && Objects.equals(publishedAt, article.publishedAt) && Objects.equals(content, article.content) && Objects.equals(author, article.author) && Objects.equals(source, article.source);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description, url, urlToImage, publishedAt, published, content, author, source);
+        return Objects.hash(id, title, description, url, urlToImage, publishedAt, content, author, source);
     }
 
     @Override
@@ -139,10 +139,8 @@ public class Article {
                 ", url='" + url + '\'' +
                 ", urlToImage='" + urlToImage + '\'' +
                 ", publishedAt=" + publishedAt +
-                ", published=" + published +
                 ", content='" + content + '\'' +
-                ", author=" + author +
-                ", source=" + source +
+                ", author='" + author + '\'' +
                 '}';
     }
 }

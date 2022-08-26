@@ -1,6 +1,9 @@
 package com.informatorio.newsArticles.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
@@ -8,25 +11,26 @@ import java.util.Set;
 
 @Entity
 public class Source {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    @NotNull
+    @NotBlank
+    private String sourceName;
     private String code;
-    private LocalDate createAt;
-
+    @FutureOrPresent
+    private LocalDate createdAt;
     @OneToMany(mappedBy = "source", cascade = CascadeType.ALL)
     private Set<Article> articles = new HashSet<>();
 
     public Source() {
     }
 
-    public Source(String name, String code, LocalDate createAt, Set<Article> articles) {
-        this.name = name;
+    public Source(Long id, String sourceName, String code, LocalDate createdAt) {
+        this.id = id;
+        this.sourceName = sourceName;
         this.code = code;
-        this.createAt = createAt;
-        this.articles = articles;
+        this.createdAt = createdAt;
     }
 
     public Long getId() {
@@ -37,12 +41,13 @@ public class Source {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getSourceName() {
+        return sourceName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSourceName(String name) {
+        this.sourceName = name;
+        this.code = name.toLowerCase().replace(' ','-');
     }
 
     public String getCode() {
@@ -50,23 +55,15 @@ public class Source {
     }
 
     public void setCode(String code) {
-        this.code = code;
+        this.code =  code;
     }
 
-    public LocalDate getCreateAt() {
-        return createAt;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateAt(LocalDate createAt) {
-        this.createAt = createAt;
-    }
-
-    public Set<Article> getArticles() {
-        return articles;
-    }
-
-    public void setArticles(Set<Article> articles) {
-        this.articles = articles;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override
@@ -74,22 +71,21 @@ public class Source {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Source source = (Source) o;
-        return Objects.equals(id, source.id) && Objects.equals(name, source.name) && Objects.equals(code, source.code) && Objects.equals(createAt, source.createAt) && Objects.equals(articles, source.articles);
+        return Objects.equals(id, source.id) && Objects.equals(sourceName, source.sourceName) && Objects.equals(code, source.code) && Objects.equals(createdAt, source.createdAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, code, createAt, articles);
+        return Objects.hash(id, sourceName, code, createdAt);
     }
 
     @Override
     public String toString() {
         return "Source{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", sourceName='" + sourceName + '\'' +
                 ", code='" + code + '\'' +
-                ", createAt=" + createAt +
-                ", articles=" + articles +
+                ", createdAt=" + createdAt +
                 '}';
     }
 }

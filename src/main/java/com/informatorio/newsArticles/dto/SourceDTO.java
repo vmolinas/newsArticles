@@ -1,36 +1,29 @@
 package com.informatorio.newsArticles.dto;
 
-import com.informatorio.newsArticles.domain.Article;
 import com.informatorio.newsArticles.domain.Source;
 
-import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 public class SourceDTO extends Source {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
     private String name;
-    @NotBlank
     private String code;
-    @NotBlank @FutureOrPresent
-    private LocalDate createAt;
-    @NotBlank
-    private Set<Article> articles = new HashSet<>();
+    private LocalDate createdAt;
 
     public SourceDTO() {
     }
 
-    public SourceDTO(Long id, String name, String code, LocalDate createAt, Set<Article> articles) {
-        this.id = id;
+    public SourceDTO(String name, String code, LocalDate createdAt) {
         this.name = name;
         this.code = code;
-        this.createAt = createAt;
-        this.articles = articles;
+        this.createdAt = createdAt;
     }
 
     public Long getId() {
@@ -41,11 +34,11 @@ public class SourceDTO extends Source {
         this.id = id;
     }
 
-    public String getName() {
+    public String getSourceName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setSourceName(String name) {
         this.name = name;
     }
 
@@ -57,20 +50,12 @@ public class SourceDTO extends Source {
         this.code = code;
     }
 
-    public LocalDate getCreateAt() {
-        return createAt;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreateAt(LocalDate createAt) {
-        this.createAt = createAt;
-    }
-
-    public Set<Article> getArticles() {
-        return articles;
-    }
-
-    public void setArticles(Set<Article> articles) {
-        this.articles = articles;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override
@@ -78,22 +63,21 @@ public class SourceDTO extends Source {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SourceDTO sourceDTO = (SourceDTO) o;
-        return Objects.equals(id, sourceDTO.id) && Objects.equals(name, sourceDTO.name) && Objects.equals(code, sourceDTO.code) && Objects.equals(createAt, sourceDTO.createAt) && Objects.equals(articles, sourceDTO.articles);
+        return Objects.equals(id, sourceDTO.id) && Objects.equals(name, sourceDTO.name) && Objects.equals(code, sourceDTO.code) && Objects.equals(createdAt, sourceDTO.createdAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, code, createAt, articles);
+        return Objects.hash(id, name, code, createdAt);
     }
 
     @Override
     public String toString() {
         return "SourceDTO{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", sourceName='" + name + '\'' +
                 ", code='" + code + '\'' +
-                ", createAt=" + createAt +
-                ", articles=" + articles +
+                ", createdAt=" + createdAt +
                 '}';
     }
 }

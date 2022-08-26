@@ -15,9 +15,7 @@ public class ArticleDTO {
     private String title;
     @NotBlank
     private String description;
-    @NotBlank
     private String url;
-    @NotBlank
     private String urlToImage;
     @NotBlank @FutureOrPresent
     private LocalDate publishedAt;

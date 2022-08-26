@@ -1,0 +1,349 @@
+{
+	"info": {
+		"_postman_id": "f4765177-84ef-4471-8c60-c9dbc314f6f6",
+		"name": "Informatorio News Articles",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Author",
+			"item": [
+				{
+					"name": "Create Author",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\" : \"Nelson\",\n    \"lastName\" : \"Gonzalez\",\n    \"createdAt\" : \"2022-09-01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/author",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"author"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Authror",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/author/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"author",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Author",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\" : \"Victor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/author/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"author",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Authors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/author",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"author"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Author by Full Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/author/victor",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"author",
+								"victor"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Article",
+			"item": [
+				{
+					"name": "Create Article",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"Sin sorpresas en la Europa Conference League\",\n    \"description\" : \"Sin sorpresas, Fiorentina, West Ham, Villarreal, Niza y Colonia sacaron adelante sus partidos de vuelta de la última ronda previa de Europa Conference League.\",\n    \"url\" : \"https://d10.ultimahora.com/sin-sorpresas-la-europa-conference-league-n3019842.html\",\n    \"urlToImage\" : \"https://media.ultimahora.com/p/1bc0f066989f5e99afac48797f4e11e6/adjuntos/169/imagenes/011/012/0011012765/ffrioenjfif.jfif\",\n    \"publishedAt\" : \"2022-09-14\",\n    \"content\" : \"Sin sorpresas, los representantes de las cinco grandes ligas europeas (Fiorentina, West Ham, Villarreal, Niza y Colonia), sacaron adelante sus partidos de vuelt...\",\n\n    \"author\": {\n        \"id\": 2\n    },\n    \"source\": {\n        \"id\": 2\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/article",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"article"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Article",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/article/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"article",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Article",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/article/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"article",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Articles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/article",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"article"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Article by Word",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/article/{title}/{description}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"article",
+								"{title}",
+								"{description}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Source",
+			"item": [
+				{
+					"name": "Create Source",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"SNT Noticias\",\n    \"createdAt\" : \"2022-05-21\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/source",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"source"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Source",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/source/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"source",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Source",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sourceName\": \"SNT Noticias\",\n    \"createdAt\": \"2022-10-15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/source/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"source",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Source",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/source",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"source"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Source by Word",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/source/clarin",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"source",
+								"clarin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
