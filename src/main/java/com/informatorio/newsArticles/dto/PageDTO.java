@@ -1,16 +1,16 @@
 package com.informatorio.newsArticles.dto;
 
-public class AuthorPageDTO {
+public class PageDTO {
 
     private int page;
     private int size;
     private Long totalElements;
     private int totalPages;
 
-    public AuthorPageDTO() {
+    public PageDTO() {
     }
 
-    public AuthorPageDTO(int page, int size, Long totalElements, int totalPages) {
+    public PageDTO(int page, int size, Long totalElements, int totalPages) {
         this.page = page;
         this.size = size;
         this.totalElements = totalElements;

@@ -1,7 +1,7 @@
 package com.informatorio.newsArticles.controller;
 
 import com.informatorio.newsArticles.domain.Author;
-import com.informatorio.newsArticles.dto.AuthorPageDTO;
+import com.informatorio.newsArticles.dto.PageDTO;
 import com.informatorio.newsArticles.repository.ArticleRepository;
 import com.informatorio.newsArticles.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +56,7 @@ public class AuthorController {
                                      @RequestParam(defaultValue = "5") @Positive int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Author> authorPage = authorRepository.findAll(pageable);
-        AuthorPageDTO authorPageDTO = new AuthorPageDTO(authorPage.getNumber(),
+        PageDTO authorPageDTO = new PageDTO(authorPage.getNumber(),
                 authorPage.getSize(),
                 authorPage.getTotalElements(),
                 authorPage.getTotalPages());
